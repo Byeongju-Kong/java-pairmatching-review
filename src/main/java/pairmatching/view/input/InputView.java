@@ -1,5 +1,7 @@
 package pairmatching.view.input;
 
+import java.util.List;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public interface InputView {
@@ -14,4 +16,6 @@ public interface InputView {
     String inputFunction();
 
     void showErrorMessage(final String errorMessage);
+
+    List<String> inputCourseLevelMission();
 }
