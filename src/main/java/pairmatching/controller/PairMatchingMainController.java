@@ -14,6 +14,10 @@ public class PairMatchingMainController {
     }
 
     public void run() {
-        Function userInputFunction = userInputController.inputUserInputFunction();
+        Function userInputFunction;
+        do {
+             userInputFunction = userInputController.inputUserInputFunction();
+             //Do Something
+        } while(userInputFunction != Function.QUIT);
     }
 }
