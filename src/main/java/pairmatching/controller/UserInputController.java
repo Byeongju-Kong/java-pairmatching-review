@@ -12,7 +12,7 @@ public class UserInputController {
         this.isWrongInput = true;
     }
 
-    public Function inputUserInputFunction() {
+    public Function getUserInputFunction() {
         isWrongInput = true;
         Function userInputFunction = null;
         while (isWrongInput) {
