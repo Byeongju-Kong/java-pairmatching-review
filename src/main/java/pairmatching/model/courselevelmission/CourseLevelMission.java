@@ -5,6 +5,7 @@ import pairmatching.model.courselevelmission.vo.Level;
 import pairmatching.model.courselevelmission.vo.Mission;
 
 import java.util.List;
+import java.util.Objects;
 
 public class CourseLevelMission {
     private static final int COURSE_INDEX = 0;
@@ -30,5 +31,18 @@ public class CourseLevelMission {
 
     public Course getCourse() {
         return course;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CourseLevelMission that = (CourseLevelMission) o;
+        return course == that.course && level == that.level && mission == that.mission;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(course, level, mission);
     }
 }
