@@ -16,16 +16,11 @@ public enum Level {
     }
 
     public static Level of(final String userInputLevelValue) {
-        if (isUserInputLevel3OrLevel5(userInputLevelValue)) {
-            throw new IllegalArgumentException("레벨 3과 5에 해당하는 미션은 없습니다.");
-        }
         return Arrays.stream(values())
                 .filter(level -> userInputLevelValue.equals(level.value))
+                .filter(level -> !userInputLevelValue.equals(LEVEL3.value))
+                .filter(level -> !userInputLevelValue.equals(LEVEL5.value))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("레벨에 대한 입력이 잘못되었습니다."));
-    }
-
-    private static boolean isUserInputLevel3OrLevel5(final String userInputLevelValue) {
-        return userInputLevelValue.equals(LEVEL3.value) || userInputLevelValue.equals(LEVEL5.value);
+                .orElseThrow(() -> new IllegalArgumentException("미션을 가진 레벨을 레벨1, 레벨2, 레벨4 뿐입니다."));
     }
 }
