@@ -8,6 +8,7 @@ import pairmatching.model.Function;
 import pairmatching.view.input.InputView;
 import pairmatching.view.input.namereader.CrewNameReader;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +30,7 @@ public class PairMatchingMainController {
         functionStrategies.put(Function.RESET, new ResetFunction(userInputController, crewNameReader));
     }
 
-    public void run() {
+    public void run() throws IOException {
         Function userInputFunction;
         do {
              userInputFunction = userInputController.getUserInputFunction();

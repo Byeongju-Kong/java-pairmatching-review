@@ -2,8 +2,9 @@ package pairmatching.controller.functionstrategy;
 
 import pairmatching.controller.UserInputController;
 import pairmatching.model.MatchingLogs;
-import pairmatching.model.courselevelmission.CourseLevelMission;
 import pairmatching.view.input.namereader.CrewNameReader;
+
+import java.io.IOException;
 
 public abstract class FunctionStrategy {
     protected final UserInputController userInputController;
@@ -15,5 +16,5 @@ public abstract class FunctionStrategy {
         this.crewNameReader = crewNameReader;
     }
 
-    public abstract void run();
+    public abstract void run() throws IOException;
 }

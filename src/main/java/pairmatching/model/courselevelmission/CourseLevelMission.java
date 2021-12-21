@@ -27,4 +27,8 @@ public class CourseLevelMission {
         Mission mission = Mission.of(userInput.get(MISSION_INDEX), level);
         return new CourseLevelMission(course, level, mission);
     }
+
+    public Course getCourse() {
+        return course;
+    }
 }
