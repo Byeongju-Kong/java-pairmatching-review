@@ -6,12 +6,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import pairmatching.model.courselevelmission.vo.Course;
+import pairmatching.model.courselevelmission.vo.Level;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static pairmatching.model.courselevelmission.vo.Level.LEVEL1;
 
 class CourseLevelMissionTest {
     private final List<String> inputCourseLevelMission = Arrays.asList("백엔드", "레벨1", "자동차경주게임");
@@ -22,6 +24,13 @@ class CourseLevelMissionTest {
     void getCourse() {
         Course course = courseLevelMission.getCourse();
         assertThat(course).isEqualTo(Course.BACK_END);
+    }
+
+    @Test
+    @DisplayName("레벨을 반환한다.")
+    void getLevel() {
+        Level level = courseLevelMission.getLevel();
+        assertThat(level).isEqualTo(LEVEL1);
     }
 
     @ParameterizedTest
