@@ -1,7 +1,7 @@
 package pairmatching.controller.functionstrategy;
 
 import pairmatching.controller.UserInputController;
-import pairmatching.model.MatchingLogs;
+import pairmatching.model.matchinglog.MatchingLogs;
 import pairmatching.view.input.namereader.CrewNameReader;
 
 import java.io.IOException;
