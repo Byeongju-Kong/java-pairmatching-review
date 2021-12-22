@@ -6,6 +6,7 @@ import pairmatching.model.courselevelmission.vo.Course;
 import pairmatching.model.courselevelmission.vo.Level;
 import pairmatching.model.crew.CrewPairs;
 import pairmatching.view.input.namereader.CrewNameReader;
+import pairmatching.view.input.vo.OverWrite;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,7 +26,16 @@ public class MatchingFunction extends FunctionStrategy {
     public void run() throws IOException {
         CourseLevelMission courseLevelMission = userInputController.getUserInputCourseAndLevelAndMission();
         List<String> crewNames = readCrewNames(courseLevelMission.getCourse());
-        match(crewNames, courseLevelMission);
+        if (canMatchNew(courseLevelMission)) {
+            match(crewNames, courseLevelMission);
+        }
+    }
+
+    private boolean canMatchNew(final CourseLevelMission courseLevelMission) {
+        if (matchingLogs.hasAlreadyMatched(courseLevelMission)) {
+            return userInputController.getUserInputOverWrite() == OverWrite.YES;
+        }
+        return true;
     }
 
     private List<String> readCrewNames(final Course course) throws IOException {

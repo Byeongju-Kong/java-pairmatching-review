@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import pairmatching.model.courselevelmission.CourseLevelMission;
 import pairmatching.model.courselevelmission.vo.Level;
@@ -45,4 +46,16 @@ class MatchingLogsTest {
                 Arguments.of(Arrays.asList("Chris", "Henry", "Brandon", "Kane"), LEVEL2, false)
         );
     }
+
+    @ParameterizedTest
+    @DisplayName("이미 매칭 된 과정, 미션, 레벨이 있는지 반환한다.")
+    @CsvSource({"백엔드, 레벨1, 자동차경주게임, true", "프론트엔드, 레벨1, 자동차경주게임, false"})
+    void hasAlreadyMatched(final String courseValue, final String levelValue,
+                           final String missionValue, final boolean expected) {
+        CourseLevelMission courseLevelMission =
+                CourseLevelMission.of(Arrays.asList(courseValue, levelValue, missionValue));
+        boolean actual = matchingLogs.hasAlreadyMatched(courseLevelMission);
+        assertThat(actual).isEqualTo(expected);
+    }
+
 }
