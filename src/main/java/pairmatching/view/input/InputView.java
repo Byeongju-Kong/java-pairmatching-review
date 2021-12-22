@@ -18,4 +18,6 @@ public interface InputView {
     void showErrorMessage(final String errorMessage);
 
     List<String> inputCourseLevelMission();
+
+    String inputOverWrite();
 }

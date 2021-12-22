@@ -5,6 +5,7 @@ import java.util.List;
 import pairmatching.model.courselevelmission.CourseLevelMission;
 import pairmatching.model.Function;
 import pairmatching.view.input.InputView;
+import pairmatching.view.input.vo.OverWrite;
 
 public class UserInputController {
     private final InputView inputView;
@@ -57,5 +58,24 @@ public class UserInputController {
             inputView.showErrorMessage(exception.getMessage());
         }
         return courseLevelMission;
+    }
+    
+    public OverWrite getUserInputOverWrite() {
+        OverWrite userInputOverWrite = OverWrite.YES;
+        while (isWrongInput) {
+            userInputOverWrite = inputOverWrite();
+        }
+        return userInputOverWrite;
+    }
+
+    private OverWrite inputOverWrite() {
+        OverWrite userInputOverWrite = OverWrite.YES;
+        try {
+            userInputOverWrite = OverWrite.of(inputView.inputOverWrite());
+            isWrongInput = false;
+        } catch (Exception exception) {
+            inputView.showErrorMessage(exception.getMessage());
+        }
+        return userInputOverWrite;
     }
 }
