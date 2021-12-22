@@ -24,8 +24,7 @@ public class MatchingFunction extends FunctionStrategy {
     @Override
     public void run() throws IOException {
         CourseLevelMission courseLevelMission = userInputController.getUserInputCourseAndLevelAndMission();
-        Course inputCourse = courseLevelMission.getCourse();
-        List<String> crewNames = readCrewNames(inputCourse);
+        List<String> crewNames = readCrewNames(courseLevelMission.getCourse());
         match(crewNames, courseLevelMission);
     }
 
