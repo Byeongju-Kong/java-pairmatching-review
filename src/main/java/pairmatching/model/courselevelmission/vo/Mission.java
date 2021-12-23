@@ -3,7 +3,7 @@ package pairmatching.model.courselevelmission.vo;
 import java.util.Arrays;
 
 public enum Mission {
-    RACING_CAR("자동차경주게임", Level.LEVEL1),
+    RACING_CAR("자동차경주", Level.LEVEL1),
     LOTTO("로또", Level.LEVEL1),
     NUMBER_BASEBALL("숫자야구게임", Level.LEVEL1),
 

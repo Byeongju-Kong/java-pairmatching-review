@@ -26,7 +26,7 @@ class MatchingLogsTest {
 
     @BeforeEach
     void setUp() {
-        List<String> userInputCourseLevelMission = Arrays.asList("백엔드", "레벨1", "자동차경주게임");
+        List<String> userInputCourseLevelMission = Arrays.asList("백엔드", "레벨1", "자동차경주");
         CourseLevelMission courseLevelMission = CourseLevelMission.of(userInputCourseLevelMission);
         List<String> crewNames = Arrays.asList("Chris", "Henry", "Brandon", "Kane");
         CrewPairs crewPairs = CrewPairs.from(crewNames, LEVEL1);
@@ -52,7 +52,7 @@ class MatchingLogsTest {
 
     @ParameterizedTest
     @DisplayName("이미 매칭 된 과정, 미션, 레벨이 있는지 반환한다.")
-    @CsvSource({"백엔드, 레벨1, 자동차경주게임, true", "프론트엔드, 레벨1, 자동차경주게임, false"})
+    @CsvSource({"백엔드, 레벨1, 자동차경주, true", "프론트엔드, 레벨1, 자동차경주, false"})
     void hasAlreadyMatched(final String courseValue, final String levelValue,
                            final String missionValue, final boolean expected) {
         CourseLevelMission courseLevelMission =
@@ -64,7 +64,7 @@ class MatchingLogsTest {
     @Test
     @DisplayName("과정, 레벨, 미션을 받아 해당하는 매칭된 크루들의 이름을 반환한다.")
     void getCrewPairsNames() {
-        List<String> userInputCourseLevelMission = Arrays.asList("백엔드", "레벨1", "자동차경주게임");
+        List<String> userInputCourseLevelMission = Arrays.asList("백엔드", "레벨1", "자동차경주");
         CourseLevelMission courseLevelMission = CourseLevelMission.of(userInputCourseLevelMission);
         List<List<String>> actual = matchingLogs.getCrewPairsNames(courseLevelMission).stream()
                 .map(CrewPairNamesDTO::getCrewNames)

@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static pairmatching.model.courselevelmission.vo.Level.LEVEL1;
 
 class CourseLevelMissionTest {
-    private final List<String> inputCourseLevelMission = Arrays.asList("백엔드", "레벨1", "자동차경주게임");
+    private final List<String> inputCourseLevelMission = Arrays.asList("백엔드", "레벨1", "자동차경주");
     private final CourseLevelMission courseLevelMission = CourseLevelMission.of(inputCourseLevelMission);
 
     @Test
@@ -54,7 +54,7 @@ class CourseLevelMissionTest {
 
     private static Stream<Arguments> provideAnotherCourseLevelMission() {
         return Stream.of(
-                Arguments.of(Arrays.asList("백엔드", "레벨1", "자동차경주게임"), true),
+                Arguments.of(Arrays.asList("백엔드", "레벨1", "자동차경주"), true),
                 Arguments.of(Arrays.asList("백엔드", "레벨1", "숫자야구게임"), false)
         );
     }
