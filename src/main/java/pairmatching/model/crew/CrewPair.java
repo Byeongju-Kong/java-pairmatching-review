@@ -1,5 +1,7 @@
 package pairmatching.model.crew;
 
+import pairmatching.dto.CrewPairNamesDTO;
+
 import java.util.List;
 
 public class CrewPair {
@@ -22,5 +24,9 @@ public class CrewPair {
     private boolean getSameNameCount(final String anotherCrewPairName) {
         return crewNames.stream()
                 .anyMatch(name -> name.equals(anotherCrewPairName));
+    }
+
+    public CrewPairNamesDTO getNames() {
+        return new CrewPairNamesDTO(crewNames);
     }
 }

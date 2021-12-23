@@ -7,6 +7,7 @@ import pairmatching.controller.functionstrategy.ResetFunction;
 import pairmatching.model.Function;
 import pairmatching.view.input.InputView;
 import pairmatching.view.input.namereader.CrewNameReader;
+import pairmatching.view.output.OutputView;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -15,19 +16,21 @@ import java.util.Map;
 public class PairMatchingMainController {
     private final CrewNameReader crewNameReader;
     private final UserInputController userInputController;
+    private final OutputView outputView;
     private final Map<Function, FunctionStrategy> functionStrategies = new HashMap<>();
 
-
-    public PairMatchingMainController(final CrewNameReader crewNameReader, final InputView inputView) {
+    public PairMatchingMainController(final CrewNameReader crewNameReader, final OutputView outputView,
+                                      final InputView inputView) {
         this.crewNameReader = crewNameReader;
         userInputController = new UserInputController(inputView);
+        this.outputView = outputView;
         initializeFunctionStrategy();
     }
 
     private void initializeFunctionStrategy() {
-        functionStrategies.put(Function.MATCH, new MatchingFunction(userInputController, crewNameReader));
-        functionStrategies.put(Function.CHECK, new CheckFunction(userInputController, crewNameReader));
-        functionStrategies.put(Function.RESET, new ResetFunction(userInputController, crewNameReader));
+        functionStrategies.put(Function.MATCH, new MatchingFunction(userInputController, outputView, crewNameReader));
+        functionStrategies.put(Function.CHECK, new CheckFunction(userInputController, outputView, crewNameReader));
+        functionStrategies.put(Function.RESET, new ResetFunction(userInputController, outputView, crewNameReader));
     }
 
     public void run() throws IOException {

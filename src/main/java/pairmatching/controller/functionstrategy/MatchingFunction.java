@@ -7,6 +7,7 @@ import pairmatching.model.courselevelmission.vo.Level;
 import pairmatching.model.crew.CrewPairs;
 import pairmatching.view.input.namereader.CrewNameReader;
 import pairmatching.view.input.vo.OverWrite;
+import pairmatching.view.output.OutputView;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,8 +19,9 @@ public class MatchingFunction extends FunctionStrategy {
     private static final String FRONT_END_FILE_PATH = "src/main/resources/frontend-crew.md";
     private static final int MAX_TRIAL_COUNT = 3;
 
-    public MatchingFunction(UserInputController userInputController, final CrewNameReader crewNameReader) {
-        super(userInputController, crewNameReader);
+    public MatchingFunction(UserInputController userInputController, final OutputView outputView,
+                            final CrewNameReader crewNameReader) {
+        super(userInputController, outputView, crewNameReader);
     }
 
     @Override
@@ -28,6 +30,7 @@ public class MatchingFunction extends FunctionStrategy {
         List<String> crewNames = readCrewNames(courseLevelMission.getCourse());
         if (canMatchNew(courseLevelMission)) {
             match(crewNames, courseLevelMission);
+            outputView.showCrewPairs(matchingLogs.getCrewPairsNames(courseLevelMission));
         }
     }
 

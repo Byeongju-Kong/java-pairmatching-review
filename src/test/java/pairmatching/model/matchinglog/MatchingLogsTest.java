@@ -2,16 +2,19 @@ package pairmatching.model.matchinglog;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
+import pairmatching.dto.CrewPairNamesDTO;
 import pairmatching.model.courselevelmission.CourseLevelMission;
 import pairmatching.model.courselevelmission.vo.Level;
 import pairmatching.model.crew.CrewPairs;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -58,4 +61,16 @@ class MatchingLogsTest {
         assertThat(actual).isEqualTo(expected);
     }
 
+    @Test
+    @DisplayName("과정, 레벨, 미션을 받아 해당하는 매칭된 크루들의 이름을 반환한다.")
+    void getCrewPairsNames() {
+        List<String> userInputCourseLevelMission = Arrays.asList("백엔드", "레벨1", "자동차경주게임");
+        CourseLevelMission courseLevelMission = CourseLevelMission.of(userInputCourseLevelMission);
+        List<List<String>> actual = matchingLogs.getCrewPairsNames(courseLevelMission).stream()
+                .map(CrewPairNamesDTO::getCrewNames)
+                .collect(Collectors.toList());
+        List<List<String>> expected = Arrays.asList(
+                Arrays.asList("Chris", "Henry"), Arrays.asList("Brandon", "Kane"));
+        assertThat(actual).isEqualTo(expected);
+    }
 }

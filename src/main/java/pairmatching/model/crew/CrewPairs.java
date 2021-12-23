@@ -1,5 +1,6 @@
 package pairmatching.model.crew;
 
+import pairmatching.dto.CrewPairNamesDTO;
 import pairmatching.model.courselevelmission.vo.Level;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class CrewPairs {
     private final List<CrewPair> values;
@@ -47,5 +49,11 @@ public class CrewPairs {
     private boolean hasSameCrewPair(final CrewPair anotherCrewPair) {
         return values.stream()
                 .anyMatch(crewPair -> crewPair.isSameCrewPairWith(anotherCrewPair));
+    }
+
+    public List<CrewPairNamesDTO> getCrewPairsNames() {
+        return values.stream()
+                .map(CrewPair::getNames)
+                .collect(Collectors.toList());
     }
 }
