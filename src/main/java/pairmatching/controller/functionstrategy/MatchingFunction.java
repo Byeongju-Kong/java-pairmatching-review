@@ -56,7 +56,7 @@ public class MatchingFunction extends FunctionStrategy {
             List<String> shuffledCrewNames = shuffle(crewNames);
             newCrewPairs = CrewPairs.from(shuffledCrewNames, userInputLevel);
             checkTrialCount(++trialCount);
-        } while (!matchingLogs.hasSameCrewPair(newCrewPairs));
+        } while (matchingLogs.hasSameCrewPair(newCrewPairs));
         matchingLogs.addLog(courseLevelMission, newCrewPairs);
     }
 

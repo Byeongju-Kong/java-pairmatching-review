@@ -19,8 +19,8 @@ public class PairMatchingMainController {
     private final OutputView outputView;
     private final Map<Function, FunctionStrategy> functionStrategies = new HashMap<>();
 
-    public PairMatchingMainController(final CrewNameReader crewNameReader, final OutputView outputView,
-                                      final InputView inputView) {
+    public PairMatchingMainController(final InputView inputView, final OutputView outputView,
+                                      final CrewNameReader crewNameReader) {
         this.crewNameReader = crewNameReader;
         userInputController = new UserInputController(inputView);
         this.outputView = outputView;
@@ -34,11 +34,11 @@ public class PairMatchingMainController {
     }
 
     public void run() throws IOException {
-        Function userInputFunction;
-        do {
-             userInputFunction = userInputController.getUserInputFunction();
-             FunctionStrategy functionStrategy = functionStrategies.get(userInputFunction);
-             functionStrategy.run();
-        } while(userInputFunction != Function.QUIT);
+        Function userInputFunction = userInputController.getUserInputFunction();
+        while (userInputFunction != Function.QUIT) {
+            FunctionStrategy functionStrategy = functionStrategies.get(userInputFunction);
+            functionStrategy.run();
+            userInputFunction = userInputController.getUserInputFunction();
+        }
     }
 }
