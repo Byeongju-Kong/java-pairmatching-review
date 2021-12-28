@@ -6,6 +6,7 @@ import pairmatching.model.courselevelmission.vo.Course;
 import pairmatching.model.courselevelmission.vo.Level;
 import pairmatching.model.crew.CrewPairs;
 import pairmatching.view.input.namereader.CrewNameReader;
+import pairmatching.view.input.vo.OverWrite;
 import pairmatching.view.output.OutputView;
 
 import java.io.IOException;
@@ -19,7 +20,7 @@ public class MatchingFunction extends FunctionStrategy {
     private static final int MAX_TRIAL_COUNT = 3;
 
     public MatchingFunction(UserInputController userInputController, final OutputView outputView,
-                         final CrewNameReader crewNameReader) {
+                            final CrewNameReader crewNameReader) {
         super(userInputController, outputView, crewNameReader);
     }
 
@@ -27,7 +28,9 @@ public class MatchingFunction extends FunctionStrategy {
     public void run() throws IOException {
         CourseLevelMission courseLevelMission = userInputController.getUserInputCourseAndLevelAndMission();
         List<String> crewNames = readCrewNames(courseLevelMission.getCourse());
-        match(crewNames, courseLevelMission);
+        if (canMatchNew(courseLevelMission)) {
+            match(crewNames, courseLevelMission);
+        }
     }
 
     private List<String> readCrewNames(final Course course) throws IOException {
@@ -35,6 +38,13 @@ public class MatchingFunction extends FunctionStrategy {
             return crewNameReader.read(BACK_END_FILE_PATH);
         }
         return crewNameReader.read(FRONT_END_FILE_PATH);
+    }
+
+    private boolean canMatchNew(final CourseLevelMission courseLevelMission) {
+        if (!matchingLogs.hasAlreadyMatched(courseLevelMission)) {
+            return true;
+        }
+        return userInputController.getUserInputOverWrite() == OverWrite.YES;
     }
 
     private void match(final List<String> crewNames, final CourseLevelMission courseLevelMission) {
