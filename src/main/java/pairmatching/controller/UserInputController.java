@@ -49,8 +49,8 @@ public class UserInputController {
 
     private CourseLevelMission inputCourseAndLevelAndMission() {
         CourseLevelMission courseLevelMission = null;
+        List<String> userInputCourseLevelMission = inputView.inputCourseLevelMission();
         try {
-            List<String> userInputCourseLevelMission = inputView.inputCourseLevelMission();
             courseLevelMission = CourseLevelMission.of(userInputCourseLevelMission);
             isWrongInput = false;
 
