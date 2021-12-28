@@ -47,6 +47,7 @@ public class MatchingFunction extends FunctionStrategy {
             checkTrialCount(++trialCount);
         } while (matchingLogs.hasSameCrewPair(newCrewPairs));
         matchingLogs.addLog(courseLevelMission, newCrewPairs);
+        outputView.showCrewPairs(matchingLogs.getCrewPairsNames(courseLevelMission));
     }
 
     private void checkTrialCount(final int trialCount) {
