@@ -22,7 +22,7 @@ class MatchingLogsTest {
 
     @BeforeEach
     void setUp() {
-        List<String> userInputCourseLevelMission = Arrays.asList("백엔드", "레벨1", "자동차경주게임");
+        List<String> userInputCourseLevelMission = Arrays.asList("백엔드", "레벨1", "자동차경주");
         CourseLevelMission courseLevelMission = CourseLevelMission.of(userInputCourseLevelMission);
         List<String> crewNames = Arrays.asList("Chris", "Henry", "Brandon", "Kane");
         CrewPairs crewPairs = CrewPairs.from(crewNames, LEVEL1);
